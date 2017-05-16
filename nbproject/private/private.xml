@@ -12,6 +12,7 @@
             <file>file:/home/aluno/helton/catalogo/controller/cadastraFilme.php</file>
             <file>file:/home/aluno/helton/catalogo/index.php</file>
             <file>file:/home/aluno/helton/catalogo/filme.php</file>
+            <file>file:/home/aluno/helton/catalogo/model/filmes_pdo.php</file>
             <file>file:/home/aluno/helton/catalogo/controller/atualizaFilme.php</file>
         </group>
     </open-files>

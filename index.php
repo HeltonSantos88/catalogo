@@ -1,3 +1,7 @@
+<?php
+    require_once './model/filmes_pdo.php';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -43,41 +47,22 @@
     <div class="container">
       <!-- Example row of columns -->
       <div class="row">
+         <?php
+            $filmes = listaFilmes();
+            
+            /* for ($i=0; $i < count($filmes); $i++) {
+             *      $filme = $filmes[$i];
+             * }
+             */
+            foreach ($filmes as $filme):
+         ?>
         <div class="col-md-4">
-          <h2>Mad Max</h2>
-          <img src="imagens/madmax.jpg" alt="MadMax" class="img-thumbnail"/>
-          <p>Muitas loucuras sobre rodas.</p>
+            <h2><?php echo $filme['nome']; ?></h2>
+            <img src="imagens/<?php echo $filme['imagem']; ?>" alt="MadMax" class="img-thumbnail"/>
+          <p><?php echo $filme['descricao']; ?></p>
           <p><a class="btn btn-default" href="detalhes.php" role="button">Ver detalhes &raquo;</a></p>
         </div>
-        
-        <div class="col-md-4">
-          <h2>Mad Max</h2>
-          <img src="imagens/madmax.jpg" alt="MadMax" class="img-thumbnail"/>
-          <p>Muitas loucuras sobre rodas.</p>
-          <p><a class="btn btn-default" href="#" role="button">Ver detalhes &raquo;</a></p>
-        </div>  
-        
-        <div class="col-md-4">
-          <h2>Mad Max</h2>
-          <img src="imagens/madmax.jpg" alt="MadMax" class="img-thumbnail"/>
-          <p>Muitas loucuras sobre rodas.</p>
-          <p><a class="btn btn-default" href="#" role="button">Ver detalhes &raquo;</a></p>
-        </div>
-          
-        <div class="col-md-4">
-          <h2>Mad Max</h2>
-          <img src="imagens/madmax.jpg" alt="MadMax" class="img-thumbnail"/>
-          <p>Muitas loucuras sobre rodas.</p>
-          <p><a class="btn btn-default" href="#" role="button">Ver detalhes &raquo;</a></p>
-        </div>
-          
-        <div class="col-md-4">
-          <h2>Mad Max</h2>
-          <img src="imagens/madmax.jpg" alt="MadMax" class="img-thumbnail"/>
-          <p>Muitas loucuras sobre rodas.</p>
-          <p><a class="btn btn-default" href="#" role="button">Ver detalhes &raquo;</a></p>
-        </div>
-          
+        <?php endforeach; ?>
       </div>
 
       <hr>

@@ -5,11 +5,30 @@ define('SENHA', "elaborata");
 define('HOST', "127.0.0.1");
 define('DATABASE', "catalogo");
 
-$con = new PDO('mysql:host=' . HOST . ';dbname=' . DATABASE, USUARIO, SENHA,
-        array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));
+/**
+ * Cria a conexão 
+ * @author Helton
+ * @link google.com
+ * @return \PDO
+ */
+function conecta (){
+   $con = new PDO('mysql:host=' . HOST . ';dbname=' . DATABASE, USUARIO, SENHA,
+            array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\'')); 
 
-$retorno = $con->query("SELECT * FROM filmes");
+   return $con;
+}
 
-$vetor = $retorno->fetchAll(PDO::FETCH_OBJ);
+/**
+ * Lista todos os filmes em catalogo
+ * @return array 
+ */
+function listaFilmes() {
+    
+    $con = conecta();
 
-var_dump($vetor);
+    $retorno = $con->query("SELECT * FROM filmes");
+
+    $vetor = $retorno->fetchAll(PDO::FETCH_ASSOC);
+    
+    return $vetor;
+}
