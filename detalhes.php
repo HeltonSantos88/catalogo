@@ -1,3 +1,10 @@
+<?php
+    require_once './model/filmes_pdo.php';
+    
+    $id = $_GET["id"];
+    $filme = getFilme($id);
+    
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -27,7 +34,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Meu NetFlix</a>
+                    <a class="navbar-brand" href="index.php">Meu NetFlix</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <form class="navbar-form navbar-right">
@@ -44,17 +51,16 @@
             <!-- Example row of columns -->
             <div class="row">
 
-                <h1>Nome do filme</h1>
-                <img src="imagens/madmax.jpg" alt="MadMax" class="img-thumbnail"/>
-                <p>Descrição do filme: altas aventuras com uma turma do barulho</p>
-                <p>Categoria: Ação - Aventura</p>
-                <p>Diretor: Charles Chaplin</p>
-                <p>Atores: Mel Gibson</p>
-                <p>Avaliação: 4/5</p>
+                <h1><?php echo $filme['nome'] ?></h1>
+                <img src="imagens/<?php echo $filme['imagem'] ?>" alt="MadMax" class="img-thumbnail"/>
+                <p>Descrição do filme: <?php echo $filme['descricao'] ?></p>
+                <p>Categoria: <?php echo $filme['categoria'] ?></p>
+                <p>Diretor: <?php echo $filme['diretor'] ?></p>
+                <p>Atores: <?php echo $filme['atores'] ?></p>
                 <div class="col-sm-3">
                     <div class="rating-block">
-                        <h4>Average user rating</h4>
-                        <h2 class="bold padding-bottom-7">4.3 <small>/ 5</small></h2>
+                        <h4>Avaliação:</h4>
+                        <h2 class="bold padding-bottom-7"><?php echo $filme['avaliacao'] ?><small>/ 5</small></h2>
                         <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
                             <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                         </button>

@@ -32,3 +32,30 @@ function listaFilmes() {
     
     return $vetor;
 }
+
+/**
+ * Retorna filme solicitado
+ * @param int $id
+ * @return array
+ */
+function getFilme($id) {
+    
+    $con = conecta();
+    
+    $sql = "SELECT * FROM filmes WHERE id = $id";
+    
+    $retorno = $con->query($sql);
+
+    return $retorno ->fetch(PDO::FETCH_ASSOC);
+    
+}
+
+function pesquisaPorNome($nome){
+    $sql = "SELECT * FROM filmes WHERE nome LIKE '%$nome%'";
+    
+    $con = conecta();
+
+    $retorno = $con->query($sql);
+
+    return $retorno->fetchAll(PDO::FETCH_ASSOC);
+}
