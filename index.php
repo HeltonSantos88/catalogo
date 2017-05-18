@@ -1,6 +1,7 @@
 <?php
+    require_once './model/conexao.php';
     require_once './model/filmes_pdo.php';
-
+    $filmes_pdo = new Filmes();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,27 +23,7 @@
 
   <body>
 
-    <nav class="navbar navbar-default navbar-static-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Meu NetFlix</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <form class="navbar-form navbar-right" action="pesquisaFilmes.php" method="post">
-            <div class="form-group">
-              <input type="text" name="pesquisa" placeholder="Persquisar" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-success">Pesquisar</button>
-          </form>
-        </div><!--/.navbar-collapse -->
-      </div>
-    </nav>
+    <?php include "template/barra_topo.html"; ?>
 
     <div class="container">
       <!-- Example row of columns -->
@@ -50,7 +31,7 @@
          <?php
          
          if(isset($filmes) == FALSE){
-            $filmes = listaFilmes();
+            $filmes = $filmes_pdo-> listaFilmes();
          }   
             /* for ($i=0; $i < count($filmes); $i++) {
              *      $filme = $filmes[$i];

@@ -1,61 +1,60 @@
 <?php
 
-define('USUARIO', "root"); // constante
-define('SENHA', "elaborata");
-define('HOST', "127.0.0.1");
-define('DATABASE', "catalogo");
+class filmes {
 
-/**
- * Cria a conexão 
- * @author Helton
- * @link google.com
- * @return \PDO
- */
-function conecta (){
-   $con = new PDO('mysql:host=' . HOST . ';dbname=' . DATABASE, USUARIO, SENHA,
-            array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\'')); 
+    /**
+     * Cria a conexão 
+     * @author Helton
+     * @link google.com
+     * @return \PDO
+     */
+    private function conecta (){
+       $con = new PDO('mysql:host=' . Conexao::HOST . ';dbname=' . Conexao::DATABASE, Conexao::USUARIO, Conexao::SENHA,
+                array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\'')); 
 
-   return $con;
-}
-
-/**
- * Lista todos os filmes em catalogo
- * @return array 
- */
-function listaFilmes() {
+       return $con;
+    }
     
-    $con = conecta();
+    /**
+     * Lista todos os filmes em catalogo
+     * @return array 
+     */
+    public function listaFilmes() {
 
-    $retorno = $con->query("SELECT * FROM filmes");
+        $con = $this->conecta();
 
-    $vetor = $retorno->fetchAll(PDO::FETCH_ASSOC);
-    
-    return $vetor;
-}
+        $retorno = $con->query("SELECT * FROM filmes");
 
-/**
- * Retorna filme solicitado
- * @param int $id
- * @return array
- */
-function getFilme($id) {
-    
-    $con = conecta();
-    
-    $sql = "SELECT * FROM filmes WHERE id = $id";
-    
-    $retorno = $con->query($sql);
+        $vetor = $retorno->fetchAll(PDO::FETCH_ASSOC);
 
-    return $retorno ->fetch(PDO::FETCH_ASSOC);
-    
-}
+        return $vetor;
+    }
 
-function pesquisaPorNome($nome){
-    $sql = "SELECT * FROM filmes WHERE nome LIKE '%$nome%'";
-    
-    $con = conecta();
+    /**
+     * Retorna filme solicitado
+     * @param int $id
+     * @return array
+     */
+    public function getFilme($id) {
 
-    $retorno = $con->query($sql);
+        $con = $this-> conecta();
 
-    return $retorno->fetchAll(PDO::FETCH_ASSOC);
+        $sql = "SELECT * FROM filmes WHERE id = $id";
+
+        $retorno = $con->query($sql);
+
+        return $retorno ->fetch(PDO::FETCH_ASSOC);
+
+    }
+
+    public function pesquisaPorNome($nome){
+        $sql = "SELECT * FROM filmes WHERE nome LIKE '%$nome%'";
+
+        $con = $this-> conecta();
+
+        $retorno = $con->query($sql);
+
+        return $retorno->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }

@@ -1,8 +1,16 @@
 <?php
+    require_once './model/conexao.php';
     require_once './model/filmes_pdo.php';
+    require_once './model/avaliacoes.php';
+    
+    $filmes_pdo = new Filmes();
+    $avaliacao = new Avaliacoes();
     
     $id = $_GET["id"];
-    $filme = getFilme($id);
+    $filme = $filmes_pdo-> getFilme($id);
+    
+    $nota = $avaliacao-> getNota($id);
+    
     
 ?>
 <!DOCTYPE html>
@@ -25,27 +33,7 @@
 
     <body>
 
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="index.php">Meu NetFlix</a>
-                </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <form class="navbar-form navbar-right">
-                        <div class="form-group">
-                            <input type="text" placeholder="Persquisar" class="form-control">
-                        </div>
-                        <button type="submit" class="btn btn-success">Pesquisar</button>
-                    </form>
-                </div><!--/.navbar-collapse -->
-            </div>
-        </nav>
+        <?php include "template/barra_topo.html"; ?>
 
         <div class="container">
             <!-- Example row of columns -->
@@ -60,22 +48,18 @@
                 <div class="col-sm-3">
                     <div class="rating-block">
                         <h4>Avaliação:</h4>
-                        <h2 class="bold padding-bottom-7"><?php echo $filme['avaliacao'] ?><small>/ 5</small></h2>
-                        <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+                        <h2 class="bold padding-bottom-7"><?php echo $nota ?><small>/ 5</small></h2>
+                        <?php for($i = 0; $i < 5; $i++): ?>
+                        <?php if($nota > $i): ?>
+                        <a href="controller/votar.php?id=<?php echo $id; ?>&nota=<?php echo $i+1; ?>" class="btn btn-warning btn-sm" aria-label="Left Align">
                             <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+                        </a>
+                        <?php else: ?>
+                        <a href="controller/votar.php?id=<?php echo $id; ?>&nota=<?php echo $i+1; ?>" class="btn btn-default btn-sm" aria-label="Left Align">
                             <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        </button>
+                        </a>
+                        <?php endif; ?>
+                        <?php endfor; ?>
                     </div>
                 </div>
             </div>
