@@ -1,6 +1,7 @@
 <?php
-    require_once './model/conexao.php';
+    require_once './model/conexao.php';   
     require_once './model/filmes_pdo.php';
+    
     $filmes_pdo = new Filmes();
 ?>
 <!DOCTYPE html>
@@ -12,9 +13,8 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
 
-    <title>Catalogo de filmes</title>
+    <title>Catalogo de Filmes</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -23,29 +23,35 @@
 
   <body>
 
-    <?php include "template/barra_topo.html"; ?>
+    <?php      include "./template/barra_topo.html"; ?>
+
+
 
     <div class="container">
       <!-- Example row of columns -->
       <div class="row">
-         <?php
-         
-         if(isset($filmes) == FALSE){
-            $filmes = $filmes_pdo-> listaFilmes();
-         }   
-            /* for ($i=0; $i < count($filmes); $i++) {
-             *      $filme = $filmes[$i];
-             * }
-             */
+        <?php
+        if (isset($filmes) == false)
+        {
+            $filmes = $filmes_pdo->listaFilmes();
+        }   
+            /*for ($i=0; $i < count($filmes); $i++)
+            {
+                $filme = $filmes[$i];
+            }*/
+            
             foreach ($filmes as $filme):
-         ?>
+        ?>
         <div class="col-md-4">
-            <h2><?php echo $filme['nome']; ?></h2>
-            <img src="imagens/<?php echo $filme['imagem']; ?>" alt="MadMax" class="img-thumbnail"/>
-          <p><?php echo $filme['descricao']; ?></p>
+          <h2><?php echo $filme["nome"] ?></h2>
+          
+          <img src="imagens/<?php echo $filme["imagem"] ?>" alt="" class="img-thumbnail"/>
+          
+          <p><?php echo $filme["descricao"] ?></p>
           <p><a class="btn btn-default" href="detalhes.php?id=<?php echo $filme["id"]; ?>" role="button">Ver detalhes &raquo;</a></p>
         </div>
-        <?php endforeach; ?>
+        <?php        endforeach; ?>
+          
       </div>
 
       <hr>
@@ -55,5 +61,7 @@
       </footer>
     </div> <!-- /container -->
 
+
+   
   </body>
 </html>

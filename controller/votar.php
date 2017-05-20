@@ -1,8 +1,11 @@
-<pre>
+
 <?php
+require_once '../model/conexao.php';
+require_once '../model/avaliacoes.php';
 
+$avaliacao = new Avaliacoes();
 
+$resultado = $avaliacao->setNota($_GET['id'], $_GET['nota']);
 
-var_dump($_GET);
-?>
-</pre>
+header("Location: /detalhes.php?id=".$_GET['id']);
+

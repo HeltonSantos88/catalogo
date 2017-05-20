@@ -1,5 +1,5 @@
-<?php
-    require_once './model/conexao.php';
+<?php 
+    require_once './model/conexao.php';  
     require_once './model/filmes_pdo.php';
     require_once './model/avaliacoes.php';
     
@@ -7,11 +7,12 @@
     $avaliacao = new Avaliacoes();
     
     $id = $_GET["id"];
-    $filme = $filmes_pdo-> getFilme($id);
+    $filme = $filmes_pdo->getFilme($id);
+
+    $nota = $avaliacao->getNota($id);
     
-    $nota = $avaliacao-> getNota($id);
-    
-    
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,9 +23,8 @@
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <meta name="description" content="">
         <meta name="author" content="">
-        <link rel="icon" href="../../favicon.ico">
 
-        <title>Catalogo de filmes</title>
+        <title>Catalogo de Filmes</title>
 
         <!-- Bootstrap core CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -33,24 +33,26 @@
 
     <body>
 
-        <?php include "template/barra_topo.html"; ?>
+        <?php      include "./template/barra_topo.html"; ?>
 
         <div class="container">
             <!-- Example row of columns -->
             <div class="row">
 
-                <h1><?php echo $filme['nome'] ?></h1>
-                <img src="imagens/<?php echo $filme['imagem'] ?>" alt="MadMax" class="img-thumbnail"/>
-                <p>Descrição do filme: <?php echo $filme['descricao'] ?></p>
-                <p>Categoria: <?php echo $filme['categoria'] ?></p>
-                <p>Diretor: <?php echo $filme['diretor'] ?></p>
-                <p>Atores: <?php echo $filme['atores'] ?></p>
-                <div class="col-sm-3">
+                <h1><?php echo $filme["nome"] ?></h1>
+                <img src="imagens/<?php echo $filme["imagem"] ?>" alt="" class="img-thumbnail"/>
+
+                <p>Descrição do Filme: <?php echo $filme["descricao"] ?></p>
+                <p>Categoria: <?php echo $filme["categoria"] ?></p>
+                <p>Diretor: <?php echo $filme["diretor"] ?></p>
+                <p>Atores: <?php echo $filme["atores"] ?></p>
+                <p>Avaliação: <?php echo $filme["avaliacao"] ?>/5</p>
+                <div class="col-sm-4">
                     <div class="rating-block">
-                        <h4>Avaliação:</h4>
-                        <h2 class="bold padding-bottom-7"><?php echo $nota ?><small>/ 5</small></h2>
-                        <?php for($i = 0; $i < 5; $i++): ?>
-                        <?php if($nota > $i): ?>
+                        <h4>Nota média</h4>
+                        <h2 class="bold padding-bottom-7"> <?php echo round($nota, 1); ?> <small>/ 5</small></h2>
+                    <?php for ($i = 0; $i < 5; $i++): ?>  
+                        <?php if($nota > $i ): ?>
                         <a href="controller/votar.php?id=<?php echo $id; ?>&nota=<?php echo $i+1; ?>" class="btn btn-warning btn-sm" aria-label="Left Align">
                             <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                         </a>
@@ -59,9 +61,10 @@
                             <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                         </a>
                         <?php endif; ?>
-                        <?php endfor; ?>
+                    <?php endfor; ?>    
                     </div>
                 </div>
+
             </div>
 
             <hr>
@@ -70,6 +73,8 @@
                 <p>&copy; 2016 Company, Inc.</p>
             </footer>
         </div> <!-- /container -->
+
+
 
     </body>
 </html>

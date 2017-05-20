@@ -6,6 +6,6 @@ $filmes_pdo = new Filmes();
 
 $pesquisa = $_POST['pesquisa'];
 
-$filmes = $filmes_pdo-> pesquisaPorNome($pesquisa);
+$filmes = $filmes_pdo->pesquisaPorNome($pesquisa);
 
 include './index.php';

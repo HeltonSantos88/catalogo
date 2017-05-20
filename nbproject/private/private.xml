@@ -3,13 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/aluno/helton/catalogo/cadastro.php</file>
-            <file>file:/home/aluno/helton/catalogo/atualizar.php</file>
-            <file>file:/home/aluno/helton/catalogo/admin.php</file>
-            <file>file:/home/aluno/helton/catalogo/pesquisaFilmes.php</file>
+            <file>file:/home/aluno/helton/catalogo/model/avaliacoes.php</file>
             <file>file:/home/aluno/helton/catalogo/detalhes.php</file>
             <file>file:/home/aluno/helton/catalogo/model/filmes.php</file>
+            <file>file:/home/aluno/helton/catalogo/model/conexao.php</file>
             <file>file:/home/aluno/helton/catalogo/index.php</file>
+            <file>file:/home/aluno/helton/catalogo/controller/votar.php</file>
             <file>file:/home/aluno/helton/catalogo/filme.php</file>
             <file>file:/home/aluno/helton/catalogo/model/filmes_pdo.php</file>
         </group>

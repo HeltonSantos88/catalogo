@@ -6,10 +6,11 @@ $id = $_GET["id"];
 
 $resultado = removerFilme($id);
 
-if ($resultado === true) {
-    $msg_retorno = "O fime foi removido com sucesso.";
+if ($resultado === true)
+{
+    $msg_retorno = "O filme foi removido com sucesso";
 } else {
-    $msg_retorno = "Não foi possível remover o filme.";
+    $msg_retorno = "Não foi possivel remover o filme";
 }
 
 header("Location: ../admin.php?msg=$msg_retorno");
